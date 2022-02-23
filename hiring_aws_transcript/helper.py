@@ -11,7 +11,7 @@ import statistics
 from moviepy.editor import *
 from botocore.exceptions import NoCredentialsError
 from django.conf import settings
-from aws_transcript.models import HiringTranscript, HiringWord, HiringErrorVideo,HiringOkGrammerErrorList,HiringNotOkGrammerErrorList,HiringReiviewGrammerErrorList
+from hiring_aws_transcript.models import HiringTranscript, HiringWord, HiringErrorVideo,HiringOkGrammerErrorList,HiringNotOkGrammerErrorList,HiringReiviewGrammerErrorList
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt

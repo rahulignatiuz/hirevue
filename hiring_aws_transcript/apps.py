@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AwsTranscriptConfig(AppConfig):
+class HiringAwsTranscriptConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'aws_transcript'
+    name = 'hiring_aws_transcript'

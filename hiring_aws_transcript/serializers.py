@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from aws_transcript.models import HiringWord, HiringTranscript,HiringQuestionAnswer,HiringRelevance
+from hiring_aws_transcript.models import HiringWord, HiringTranscript,HiringQuestionAnswer,HiringRelevance
 
 
 class WordSerializer(serializers.ModelSerializer):

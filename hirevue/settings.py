@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'aws_transcript',
+    'hiring_aws_transcript'
 ]
 
 MIDDLEWARE = [
