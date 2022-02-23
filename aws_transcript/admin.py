@@ -1,5 +1,5 @@
 from django.contrib import admin
-from aws_transcript.models import Transcript, Word, ErrorVideo
+from aws_transcript.models import HiringTranscript, HiringWord, HiringErrorVideo,HiringQuestionAnswer,HiringRelevance,HiringVideoIdToVideoTypeMaping,HiringOkGrammerErrorList,HiringNotOkGrammerErrorList,HiringReiviewGrammerErrorList
 
 
 # Register your models here.
@@ -18,7 +18,32 @@ class WordAdmin(admin.ModelAdmin):
 class ErrorVideoAdmin(admin.ModelAdmin):
     list_display = ('video_url', 'error', 'error_date')
 
+class QuestionAnswerAdmin(admin.ModelAdmin):
+    list_display = ('video_type','video_type_id','questionID','question','answer')
 
-admin.site.register(Transcript, TranscriptAdmin)
-admin.site.register(Word, WordAdmin)
-admin.site.register(ErrorVideo, ErrorVideoAdmin)
+class RelevanceAdmin(admin.ModelAdmin):
+    list_display = ('transcript','Candidate_id','questionID','video_type_id','video_type')
+
+class VideoIdToVideoTypeMapingAdmin(admin.ModelAdmin):
+    list_display = ('video_type_id','video_type')
+
+# class HiringOkErrorListAdmin(admin.ModelAdmin):
+#     list_display = ('error_desc')
+
+# class HiringNotOkErrorListAdmin(admin.ModelAdmin):
+#     list_display = ('error_desc')
+
+# class HiringReiviewErrorListAdmin(admin.ModelAdmin):
+#     list_display = ('error_desc')
+
+
+
+admin.site.register(HiringTranscript, TranscriptAdmin)
+admin.site.register(HiringWord, WordAdmin)
+admin.site.register(HiringErrorVideo, ErrorVideoAdmin)
+admin.site.register(HiringQuestionAnswer,QuestionAnswerAdmin)
+admin.site.register(HiringRelevance,RelevanceAdmin)
+admin.site.register(HiringVideoIdToVideoTypeMaping,VideoIdToVideoTypeMapingAdmin)
+admin.site.register(HiringOkGrammerErrorList)
+admin.site.register(HiringNotOkGrammerErrorList)
+admin.site.register(HiringReiviewGrammerErrorList)
