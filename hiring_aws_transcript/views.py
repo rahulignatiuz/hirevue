@@ -262,6 +262,30 @@ class checkGrammarErrrorForAllTranscript(generics.CreateAPIView):
         return Response(content, status.HTTP_201_CREATED)
 
 
+class import_videoID_videoType(generics.CreateAPIView):
+    serializer_class = FileUploadSerializer
+
+    def post(self, request, *args, **kwargs):
+        # try:
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        file = serializer.validated_data['file']
+        df_videoID_videoType = pd.read_excel(file, sheet_name='Sheet2',header=None)
+        print(range(len(df_videoID_videoType)))
+        for ind, row in df_videoID_videoType.iterrows():
+            # print(row['video_type'], row['video_type_id'], row['questionID'], row['question'], row['answer'])
+            # QA_data = HiringQuestionAnswer(video_type=row['video_type'], video_type_id=row['video_type_id'],
+            #                                questionID=row['questionID'], question=row['question'], answer=row['answer'])
+            # QA_data.save()
+            HVIDVT=HiringVideoIdToVideoTypeMaping(video_type_id=row[1],video_type=row[0])
+            HVIDVT.save()
+        content = {
+
+            "result": 'success'
+        }
+        return Response(content, status=status.HTTP_201_CREATED)
+
+
 
 
 
