@@ -50,7 +50,7 @@ class HiringQuestionAnswer(models.Model):
     video_type_id = models.IntegerField(default=0, null=True, blank=True)
     questionID = models.CharField(max_length=50, null=True, blank=True)
     question = models.CharField(max_length=1500, null=True, blank=True)
-    answer = models.CharField(max_length=10000, null=True, blank=True)
+    answer = models.TextField(default='NA', null=True, blank=True)
     cleaned_answer = models.TextField(default='NA', null=True, blank=True)
 
 
