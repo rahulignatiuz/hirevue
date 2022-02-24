@@ -11,7 +11,7 @@ import statistics
 from moviepy.editor import *
 from botocore.exceptions import NoCredentialsError
 from django.conf import settings
-from hiring_aws_transcript.models import HiringTranscript, HiringWord, HiringErrorVideo,HiringOkGrammerErrorList,HiringNotOkGrammerErrorList,HiringReiviewGrammerErrorList
+from hiring_aws_transcript.models import HiringTranscript, HiringWord, HiringErrorVideo,HiringOkGrammerErrorList,HiringNotOkGrammerErrorList,HiringReiviewGrammerErrorList,HiringVideoIdToVideoTypeMaping
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -91,7 +91,9 @@ def aws_transcribe(urls, video_type):
                     HiringTranscript.objects.filter(pk=transcript.id).update(
                         average_confidence=statistics.mean(average_confidence),
                         total_words=len(total_words), speak_time=speak_time, hurriness=hurriness,Words_per_minute=hurriness*60,stutter_count=stutter_count,stutter_per_minute=stutter_per_minute,Candidate_id=Candidate_id,questionID=questionID)
-                    check_grammer_error(transcript)
+                    transcript.video_type_id=HiringVideoIdToVideoTypeMaping.objects.get(video_type=transcript.video_type).video_type_id
+                    transcript.save()
+                    check_grammer_error([transcript])
                 else:
                     success_status = "Failure"
             else:
@@ -273,12 +275,12 @@ def check_grammer_error(data):
     for i in data:
         count=0
         match = tl.check(i.transcript)
-        print(match)
-        print('------------------------------')
+        # print(match)
+        # print('------------------------------')
         # print(match[0])
-        print('------------------------------')
+        # print('------------------------------')
         # print(match[0].message)
-        print('------------------------------')
+        # print('------------------------------')
         # HiringOkGrammerErrorList.objects.filter(error_desc=)
         if match==[]:
             pass

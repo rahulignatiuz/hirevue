@@ -189,8 +189,9 @@ class CreatePickelFile(generics.CreateAPIView):
             cleaned_ans = [QNA.cleaned_answer]
             tfidfvectorizer.fit(cleaned_ans)
             picknm = 'answer' + str(QNA.id) + ".pkl"
+            file_path='media/pickle/'+picknm
             # answer3.pkl
-            with open(picknm, 'wb') as files:
+            with open(file_path, 'wb') as files:
                 pickle.dump(tfidfvectorizer, files)
         content = {'result': 'success'}
         return Response(content, status.HTTP_201_CREATED)
@@ -204,8 +205,9 @@ class CalculateCosineSimilarities(generics.CreateAPIView):
 
         QNA = HiringQuestionAnswer.objects.get(questionID=questionID, video_type=video_type)
         picknm = 'answer' + str(QNA.id) + ".pkl"
-        print(picknm)
-        with open(picknm, 'rb') as f:
+        # print(picknm)
+        file_path='media/pickle/'+picknm
+        with open(file_path, 'rb') as f:
             lr = pickle.load(f)
 
         cleaned_ans = [QNA.cleaned_answer]
