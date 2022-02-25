@@ -88,12 +88,20 @@ def aws_transcribe(urls, video_type):
                     speak_time = max(end) - min(start)
                     hurriness = len(total_words) / speak_time
                     stutter_per_minute=stutter_count*60/(speak_time)
+                    hvidvt=HiringVideoIdToVideoTypeMaping.objects.get(video_type=transcript.video_type)
                     HiringTranscript.objects.filter(pk=transcript.id).update(
                         average_confidence=statistics.mean(average_confidence),
-                        total_words=len(total_words), speak_time=speak_time, hurriness=hurriness,Words_per_minute=hurriness*60,stutter_count=stutter_count,stutter_per_minute=stutter_per_minute,Candidate_id=Candidate_id,questionID=questionID)
-                    transcript.video_type_id=HiringVideoIdToVideoTypeMaping.objects.get(video_type=transcript.video_type).video_type_id
-                    transcript.save()
-                    check_grammer_error([transcript])
+                        total_words=len(total_words), speak_time=speak_time, hurriness=hurriness,Words_per_minute=hurriness*60,stutter_count=stutter_count,stutter_per_minute=stutter_per_minute,Candidate_id=Candidate_id,questionID=questionID,video_type_id=hvidvt.video_type_id)
+                    
+                    # print(trans_temp)
+                    # trans_temp.save()
+                    # print('abc')
+                    # print(transcript.video_type)
+                    
+                    # print(hvidvt.video_type_id)
+                    # print('abc')
+                    # transcript.save()
+                    # check_grammer_error([transcript])
                 else:
                     success_status = "Failure"
             else:

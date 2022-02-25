@@ -5,11 +5,11 @@ from hiring_aws_transcript.models import HiringTranscript, HiringWord, HiringErr
 
 class TranscriptAdmin(admin.ModelAdmin):
     list_display = (
-    'response_id', 'transcript', 'total_words', 'video_type', 'average_confidence', 'speak_time', 'hurriness')
+    'response_id','Candidate_id','questionID', 'transcript','video_type_id', 'total_words', 'video_type', 'average_confidence', 'speak_time', 'hurriness','stutter_count','stutter_per_minute','Words_per_minute','grammar_error_count','grammar_error_count_per_minute')
 
 class WordAdmin(admin.ModelAdmin):
     list_display = (
-    'transcript_id', 'start_time', 'end_time', 'content', 'pron', 'confidence', 'mean_time', 'second', 'video_type')
+    'transcript_id', 'start_time', 'end_time', 'content', 'pron', 'confidence', 'mean_time', 'second', 'video_type','is_stutter')
 
 
 class ErrorVideoAdmin(admin.ModelAdmin):
